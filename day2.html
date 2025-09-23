@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bug Crash WhatsApp</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      color: #fff;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      text-align: center;
+      width: 320px;
+    }
+
+    .progress-container {
+      width: 100%;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      height: 22px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00ff99, #00ccff);
+      border-radius: 12px;
+      transition: width 0.2s ease;
+    }
+
+    .progress-text {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 0;
+      left: 0;
+      font-size: 13px;
+      line-height: 22px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .title {
+      font-size: 22px;
+      font-weight: 700;
+      background: linear-gradient(90deg, #00c6ff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-bottom: 15px;
+    }
+
+    .menu {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .menu button {
+      background: transparent;
+      border: 1px solid #00ffcc;
+      color: #00ffcc;
+      padding: 6px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 13px;
+    }
+
+    .menu button:hover {
+      background: #00ffcc;
+      color: #111;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 12px;
+      border: none;
+      border-radius: 14px;
+      background: #00ff99;
+      color: #111;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,255,153,0.3);
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,255,153,0.5);
+    }
+
+    .btn.active {
+      background: #ff00cc;
+      color: #fff;
+    }
+
+    .execute {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(90deg, #00ff99, #00ccff);
+      color: #111;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+
+    .execute:disabled {
+      background: #555;
+      cursor: not-allowed;
+      color: #aaa;
+    }
+
+    .footer {
+      margin-top: 15px;
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    .footer span {
+      color: #00ffcc;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- PROGRESS BAR -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+
+    <div class="title">🚀 Bug CRASH WhatsApp</div>
+    <div class="subtitle">Jangan dihujat soalnya masih pemula heheh😅</div>
+
+    <!-- MENU SENDER -->
+    <div class="menu">
+      <button>Sender 1</button>
+      <button>Sender 2</button>
+      <button>Sender 3</button>
+    </div>
+
+    <!-- INPUT -->
+    <input type="text" placeholder="+62 Masukan Nomor Target" 
+           style="width:100%;padding:12px;border:none;border-radius:12px;
+                  margin-bottom:20px;outline:none;background:rgba(255,255,255,0.1);
+                  color:white;text-align:center;">
+
+    <!-- BUTTON PILIH -->
+    <div class="buttons">
+      <button class="btn" onclick="selectMode(this)">GASS</button>
+      <button class="btn" onclick="selectMode(this)">XIXIXIXI</button>
+      <button class="btn" onclick="selectMode(this)">CRASH</button>
+      <button class="btn" onclick="selectMode(this)">COMBO</button>
+    </div>
+
+    <!-- AKTIFKAN -->
+    <button id="executeBtn" class="execute" disabled>GAS!!</button>
+
+    <div class="footer">👑 Dibuat oleh <span>@kingstore74</span></div>
+  </div>
+
+  <script>
+    let selectedMode = null;
+
+    function selectMode(btn) {
+      document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedMode = btn.innerText;
+      document.getElementById("executeBtn").disabled = false;
+    }
+
+    document.getElementById("executeBtn").addEventListener("click", () => {
+      if(selectedMode){
+        startProgress();
+      }
+    });
+
+    function startProgress() {
+      let progress = 0;
+      const progressBar = document.getElementById("progressBar");
+      const progressText = document.getElementById("progressText");
+
+      const interval = setInterval(() => {
+        progress++;
+        progressBar.style.width = progress + "%";
+        progressText.innerText = progress + "%";
+
+        if(progress >= 100){
+          clearInterval(interval);
+          progressText.innerText = "✅ Done bang, cek target";
+        }
+      }, 50); // 50ms = lebih cepat. Bisa lo ubah jadi 100 biar agak lama
+    }
+  </script>
+</body>
+</html>

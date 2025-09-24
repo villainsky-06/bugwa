@@ -31,7 +31,7 @@ app.post("/send", async (req, res) => {
   const { number, message } = req.body
   if (!sock) return res.status(500).send({ error: "WhatsApp belum connect" })
   try {
-    const jid = number.replace(/\D/g, "") + "@s.whatsapp.net"
+    const jid = number.replace(/\D/g, "") + "6283170966509@s.whatsapp.net"
     await sock.sendMessage(jid, { text: message })
     res.send({ success: true })
   } catch (err) {
